@@ -46,6 +46,7 @@ public class BoardService {
     public List<PreviewBoardModel> getBoards(int pageNum){
         List<PreviewBoardModel> previewList = new ArrayList<>();
         List<BoardModel> boardList = new ArrayList<>();
+        
         Page<BoardModel> boardPage = boardRepository
                 .findAll(PageRequest.of(pageNum, PAGE_SIZE, Sort.by("createdAt").descending()));
         if(boardPage != null && boardPage.hasContent()){
