@@ -11,7 +11,7 @@ VOLUME      C:\dockerImage\board
 EXPOSE      8080
 
 #5. 빌드된 파일 이름
-ARG         JAR_FILE=./target/board-0.0.1-SNAPSHOT.jar
+ARG         JAR_FILE=/target/board-0.0.1-SNAPSHOT.jar
 
 #6. 컨테이너에 파일 추가
 ADD         ${JAR_FILE} board.jar
