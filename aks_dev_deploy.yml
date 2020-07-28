@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: board-dev-dp
+  namespace: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: app
+      service: board-dev
+  template:
+    metadata:
+      labels:
+        type: app
+        service: board-dev
+    spec:
+      containers:
+      - name: board
+        image: huijun.azurecr.io/board
+        env:
+        - name: PROFILE
+          value: dev
