@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: board
-        image: huijun.azurecr.io/board
+        image: huijun.azurecr.io/board:BUILDID
         env:
         - name: PROFILE
           value: dev
