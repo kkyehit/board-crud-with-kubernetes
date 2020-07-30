@@ -65,8 +65,7 @@ stages:
       displayName: convert tag to build.id in kubernetes menifest
       inputs:
         script: |
-          sed -i 's/BUILDID/$(tag)/' aks_dev_deploy.yml
-          sed -i 's/BUILDID/$(tag)/' aks_prod_deploy.yml
+          sed -i 's/BUILDID/$(tag)/' aks_deploy.yml
     - task: CopyFiles@2
       displayName: Copy file
       inputs:

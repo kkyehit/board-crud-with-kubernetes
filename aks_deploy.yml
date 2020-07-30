@@ -1,8 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: board-dev-dp
-  namespace: staging
+  name: board-dp
 spec:
   replicas: 1
   selector:
@@ -16,8 +15,11 @@ spec:
         service: board-dev
     spec:
       containers:
-      - name: board
-        image: huijun.azurecr.io/board:BUILDID
-        env:
-        - name: PROFILE
-          value: dev
+        - name: board
+          image: huijun.azurecr.io/board:BUILDID
+          env:
+            - name: PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: profile
