@@ -39,8 +39,9 @@ stages:
           maven | "$(Agent.OS)"
           maven 
         path: $(MAVEN_CACHE_FOLDER)
-      displayName: Cache Maven local repo 
+      displayName: Caching
     - task: Maven@3
+      displayName: MavenBuild
       inputs:
         mavenPomFile: 'pom.xml'
         mavenOptions: '-Xmx3072m $(MAVEN_OPTS)'
@@ -52,7 +53,7 @@ stages:
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
     - task: Docker@2
-      displayName: Build and push image with build.id tag
+      displayName: Docker build and push
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
@@ -67,9 +68,11 @@ stages:
           sed -i 's/BUILDID/$(tag)/' aks_dev_deploy.yml
           sed -i 's/BUILDID/$(tag)/' aks_prod_deploy.yml
     - task: CopyFiles@2
+      displayName: Copy file
       inputs:
         targetFolder: '$(Build.ArtifactStagingDirectory)'
     - task: PublishBuildArtifacts@1
+      displayName: publish artifact
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'board_crud'
