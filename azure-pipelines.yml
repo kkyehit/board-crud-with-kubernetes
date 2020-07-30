@@ -4,6 +4,8 @@
 
 trigger:
 - master
+- production
+- staging
 
 resources:
 - repo: self
