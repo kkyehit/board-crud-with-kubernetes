@@ -76,14 +76,14 @@ public class BoardController {
         boardService.deleteBoard(deleteBoardModel);
         log.info("deleteBoard");
     }
-
+/*
     //test method
     @ApiOperation(value = "테스트 입니다.")
-    @RequestMapping(value = "/test", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test(){
         return "test";
     }
-
+*/
 /*
     //Global Exception
     @ExceptionHandler(value = Exception.class)
