@@ -58,4 +58,4 @@ spec:
     targetPort: 8080
   selector:
     type: app
-    service: board-dev
+    service: board
