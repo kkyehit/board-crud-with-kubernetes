@@ -1,0 +1,17 @@
+apipiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: staging
+data:
+  ns: staging
+  profile: dev
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: production
+data:
+  ns: production
+  profile: prod

@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: board-dp
-  namespace: production	
 spec:
   replicas: 1
   selector:
@@ -16,8 +15,11 @@ spec:
         service: board
     spec:
       containers:
-      - name: board
-        image: huijun.azurecr.io/board:BUILDID
-        env:
-        - name: PROFILE
-          value: prod
+        - name: board
+          image: huijun.azurecr.io/board:BUILDID
+          env:
+            - name: PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: profile
