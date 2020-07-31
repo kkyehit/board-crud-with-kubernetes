@@ -1,4 +1,4 @@
-apiVersion: v1
+apipiVersion: v1
 kind: ConfigMap
 metadata:
   name: config
