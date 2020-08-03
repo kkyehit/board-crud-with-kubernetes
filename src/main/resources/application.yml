@@ -11,9 +11,3 @@ spring:
 
 banner:
   location: "classpath:banner.txt"
-
-loggig:
-  level:
-    com:
-      project:
-        board: "DEBUG"
