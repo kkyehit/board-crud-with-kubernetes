@@ -69,6 +69,7 @@ public class BoardService {
     public void updateBoard(UpdateBoardModel updateBoardModel) throws EntityNotFoundException {
         BoardModel boardModel
                 = boardRepository.findById(updateBoardModel.getBoard_id()).orElseThrow(()->new EntityNotFoundException());
+        boardModel.setAuthor_name(updateBoardModel.getAuthor_name());
         boardModel.setContent(updateBoardModel.getContent());
         boardModel.setTitle(updateBoardModel.getTitle());
         boardModel.setCreatedAt(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("+9"))));

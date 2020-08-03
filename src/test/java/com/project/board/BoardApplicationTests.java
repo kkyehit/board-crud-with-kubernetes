@@ -92,7 +92,7 @@ class BoardApplicationTests {
 	@Order(6)
 	void deleteBoard() throws Exception{
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/boards")
-					.content("{\"board_id\": \"1\"}")
+					.content("{\"board_id\": \"2\"}")
 					.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print());
