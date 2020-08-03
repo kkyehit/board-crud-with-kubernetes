@@ -43,3 +43,8 @@ spec:
                 secretKeyRef:
                   name: mysql-info
                   key: MYSQL_PW.txt
+            - name: AUTO_DDL
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-info
+                  key: AUTO_DDL.txt
