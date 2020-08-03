@@ -25,21 +25,21 @@ spec:
                   key: profile
             - name: MYSQL_URL
               valueFrom:
-                secretKyeRef:
-                  name: mysql_info
+                secretKeyRef:
+                  name: mysql-info
                   key: MYSQL_URL.txt
             - name: MYSQL_PORT
               valueFrom:
-                secretKyeRef:
-                  name: mysql_info
+                secretKeyRef:
+                  name: mysql-info
                   key: MYSQL_PORT.txt
             - name: MYSQL_USER
               valueFrom:
-                secretKyeRef:
-                  name: mysql_info
+                secretKeyRef:
+                  name: mysql-info
                   key: MYSQL_USER.txt
             - name: MYSQL_PW
               valueFrom:
-                secretKyeRef:
-                  name: mysql_info
+                secretKeyRef:
+                  name: mysql-info
                   key: MYSQL_PW.txt
