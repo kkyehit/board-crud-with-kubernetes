@@ -1,9 +1,13 @@
 spring:
   datasource:
-    url: "jdbc:h2:~/test"
-    driverClassName: "org.h2.Driver"
-    username: "sa"
-    password: "sa"
+    url: "jdbc:mysql://board-db.mysql.database.azure.com:3306/board_db?serverTimezone=UTC&characterEncoding=UTF-8"
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+    username: "huijun@board-db"
+    password: "*"
+  jpa:
+    hibernate:
+      format_sql: true
+      ddl_auto: create
 
 banner:
   location: "calsspath:banner.txt"
