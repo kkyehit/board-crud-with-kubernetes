@@ -58,7 +58,7 @@ public class BoardService {
                     .board_id(boardModel.getBoard_id())
                     .title(boardModel.getTitle())
                     .author_name(boardModel.getAuthor_name())
-                    .createdAt(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("+18"))))
+                    .createdAt(boardModel.getCreatedAt())
                     .build();
             previewList.add(previewBoardModel);
         }
@@ -69,9 +69,10 @@ public class BoardService {
     public void updateBoard(UpdateBoardModel updateBoardModel) throws EntityNotFoundException {
         BoardModel boardModel
                 = boardRepository.findById(updateBoardModel.getBoard_id()).orElseThrow(()->new EntityNotFoundException());
+        boardModel.setAuthor_name(updateBoardModel.getAuthor_name());
         boardModel.setContent(updateBoardModel.getContent());
         boardModel.setTitle(updateBoardModel.getTitle());
-        boardModel.setCreatedAt(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("+18"))));
+        boardModel.setCreatedAt(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("+9"))));
         boardRepository.save(boardModel);
     }
 

@@ -92,7 +92,7 @@ class BoardApplicationTests {
 	@Order(6)
 	void deleteBoard() throws Exception{
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/boards")
-					.content("{\"board_id\": \"1\"}")
+					.content("{\"board_id\": \"2\"}")
 					.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print());
@@ -100,7 +100,7 @@ class BoardApplicationTests {
 	@Test
 	@Order(7)
 	void getBoardAfterDelete() throws Exception{
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/boards/1"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/boards/2"))
 				.andExpect(MockMvcResultMatchers.status().isNoContent())
 				.andDo(MockMvcResultHandlers.print());
 	}
@@ -109,7 +109,7 @@ class BoardApplicationTests {
 	@Order(8)
 	void deleteNoData() throws Exception{
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/boards")
-				.content("{\"board_id\": \"1\"}")
+				.content("{\"board_id\": \"2\"}")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isNoContent())
 				.andDo(MockMvcResultHandlers.print());
