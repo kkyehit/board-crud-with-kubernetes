@@ -7,7 +7,7 @@ spring:
   jpa:
     hibernate:
       format_sql: true
-      ddl_auto: create
+      ddl_auto: update
 
 banner:
   location: "classpath:banner.txt"
