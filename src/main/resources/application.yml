@@ -10,7 +10,7 @@ spring:
       ddl_auto: create
 
 banner:
-  location: "calsspath:banner.txt"
+  location: "classpath:banner.txt"
 
 loggig:
   level:

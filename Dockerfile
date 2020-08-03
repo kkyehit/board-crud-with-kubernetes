@@ -16,9 +16,9 @@ ARG         JAR_FILE=/target/board-0.0.1-SNAPSHOT.jar
 #6. 컨테이너에 파일 추가
 ADD         ${JAR_FILE} board.jar
 
-#7. 황경 변수
+#7. 환경 변수
 ENV         PROFILE=${APPLICATION_CONTEXT:-dev}
 
 #8. 파일 실행 (-Dspring.profiles.active=${PROFILE} 추가 )
-ENTRYPOINT  ["java","-jar","-Dspring.profiles.active=${PROFILE}","/board.jar"]
+ENTRYPOINT  ["java","-jar","-Dspring.profiles.active=${PROFILE}","-Dspring.datasource.password=${DB_PASSWORD}","/board.jar"]
 
