@@ -3,11 +3,11 @@ kind: Namespace
 metadata: 
   name: staging
 ---
-apiVersion: networking.k8s.io/v1beta1			
-kind: Ingress				
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
 metadata:
-  name: board-dev	
-  namespace: staging		
+  name: board-dev
+  namespace: staging
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
     
@@ -31,12 +31,12 @@ spec:
   selector:
     matchLabels:
       type: app
-      service: board-dev
+      service: board
   template:
     metadata:
       labels:
         type: app
-        service: board-dev
+        service: board
     spec:
       containers:
       - name: board
