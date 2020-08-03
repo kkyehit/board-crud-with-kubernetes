@@ -23,3 +23,28 @@ spec:
                 configMapKeyRef:
                   name: config
                   key: profile
+            - name: MYSQL_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-info
+                  key: MYSQL_URL.txt
+            - name: MYSQL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-info
+                  key: MYSQL_PORT.txt
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-info
+                  key: MYSQL_USER.txt
+            - name: MYSQL_PW
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-info
+                  key: MYSQL_PW.txt
+            - name: AUTO_DDL
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-info
+                  key: AUTO_DDL.txt

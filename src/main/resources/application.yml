@@ -1,15 +1,16 @@
 spring:
   datasource:
-    url: "jdbc:h2:~/test"
-    driverClassName: "org.h2.Driver"
-    username: "sa"
-    password: "sa"
-  h2:
-    console:
-      enabled: true
+    url: jdbc:mysql://${MYSQL_URL}:${MYSQL_PORT}/board_db?serverTimezone=UTC&characterEncoding=UTF-8
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PW}
+  jpa:
+    hibernate:
+      format_sql: true
+      ddl_auto: ${AUTO_DDL}
 
 banner:
-  location: "calsspath:banner.txt"
+  location: "classpath:banner.txt"
 
 loggig:
   level:
