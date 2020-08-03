@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: "jdbc:mysql://board-db.mysql.database.azure.com:3306/board_db?serverTimezone=UTC&characterEncoding=UTF-8"
+    url: jdbc:mysql://${MYSQL_URL}:${MYSQL_PORT}/board_db?serverTimezone=UTC&characterEncoding=UTF-8
     driverClassName: "com.mysql.cj.jdbc.Driver"
-    username: "huijun@board-db"
-    password: "*"
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PW}
   jpa:
     hibernate:
       format_sql: true

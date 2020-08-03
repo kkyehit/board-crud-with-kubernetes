@@ -20,5 +20,5 @@ ADD         ${JAR_FILE} board.jar
 ENV         PROFILE=${APPLICATION_CONTEXT:-dev}
 
 #8. 파일 실행 (-Dspring.profiles.active=${PROFILE} 추가 )
-ENTRYPOINT  ["java","-jar","-Dspring.profiles.active=${PROFILE}","-Dspring.datasource.password=${DB_PASSWORD}","/board.jar"]
+ENTRYPOINT  ["java","-jar","-Dspring.profiles.active=${PROFILE}","/board.jar"]
 
