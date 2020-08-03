@@ -100,7 +100,7 @@ class BoardApplicationTests {
 	@Test
 	@Order(7)
 	void getBoardAfterDelete() throws Exception{
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/boards/1"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/boards/2"))
 				.andExpect(MockMvcResultMatchers.status().isNoContent())
 				.andDo(MockMvcResultHandlers.print());
 	}
