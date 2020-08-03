@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: board
-          image: huijun.azurecr.io/board:$$(Build.BuildId)
+          image: huijun.azurecr.io/board:BUILDID
           env:
             - name: PROFILE
               valueFrom:
