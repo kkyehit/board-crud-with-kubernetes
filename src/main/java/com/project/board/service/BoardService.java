@@ -33,7 +33,7 @@ public class BoardService {
                 .title(addBoardModel.getTitle())
                 .content(addBoardModel.getContent())
                 .author_name(addBoardModel.getAuthor_name())
-                .createdAt(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("+18"))))
+                .createdAt(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("+9"))))
                 .build();
         boardRepository.save(boardModel);
     }
