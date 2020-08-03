@@ -4,9 +4,6 @@ spring:
     driverClassName: "org.h2.Driver"
     username: "sa"
     password: "sa"
-  h2:
-    console:
-      enabled: true
 
 banner:
   location: "calsspath:banner.txt"
