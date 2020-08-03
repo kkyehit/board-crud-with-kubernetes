@@ -11,3 +11,9 @@ spring:
 
 banner:
   location: "classpath:banner.txt"
+
+hikari:
+  pool-name:
+    my-dbcp connection-timeout: 10000
+    maximum-pool-size: 16
+    max-lifetime: 240000
