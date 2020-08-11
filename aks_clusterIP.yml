@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: board-cluster-ip
+  namespace: staging
+spec:
+  ports :
+  - port: 8080
+    protocol: TCP
+  selector:
+    type: app
+    service: board
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: board-cluster-ip
+  namespace: production
+spec:
+  ports :
+    - port: 8080
+      protocol: TCP
+  selector:
+    type: app
+    service: board

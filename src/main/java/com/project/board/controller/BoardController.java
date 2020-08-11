@@ -5,7 +5,9 @@ import com.project.board.model.request.AddBoardModel;
 import com.project.board.model.request.DeleteBoardModel;
 import com.project.board.model.request.UpdateBoardModel;
 import com.project.board.model.response.PreviewBoardModel;
+import com.project.board.model.response.ResponseBoardModel;
 import com.project.board.service.BoardService;
+import com.project.board.service.FileService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class BoardController {
 
     @Autowired
     BoardService boardService;
+
+    @Autowired
+    FileService fileService;
 
     //게시판 작성
     @ApiOperation(value = "게시글 추가")
@@ -51,10 +56,18 @@ public class BoardController {
     @ApiOperation(value = "게시글 내용 요청")
     @RequestMapping(value = "/boards/{boardId}", method = RequestMethod.GET)
     @ApiImplicitParam(name = "boardId", value = "게시글 ID에 따른 게시글 정보를 반환합니다.", dataType = "Integer", required = true)
-    public BoardModel getBoard(
+    public ResponseBoardModel getBoard(
             @PathVariable("boardId") int boardId) throws Exception {
         log.info("getBoard");
-        return boardService.getBoard(boardId);
+        BoardModel boardModel = boardService.getBoard(boardId);
+        return ResponseBoardModel.builder()
+                .author_name(boardModel.getAuthor_name())
+                .board_id(boardModel.getBoard_id())
+                .content(boardModel.getContent())
+                .title(boardModel.getTitle())
+                .createdAt(boardModel.getCreatedAt())
+                .fileList(fileService.getFileList(boardId))
+                .build();
     }
 
     //게시판 수정
