@@ -39,7 +39,7 @@ public class FileService {
 
         try {
             log.info("uploadFile : "+boardId);
-            restTemplateClient.postForEntity(apiServer+"?boardId="+boardId, requestEntity, String.class);
+            restTemplateClient.postForLocation(apiServer+"?boardId="+boardId, requestEntity);
         }catch (Exception e){
             e.printStackTrace();
         }
