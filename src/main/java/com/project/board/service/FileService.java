@@ -2,6 +2,7 @@ package com.project.board.service;
 
 import com.project.board.config.RestTemplateClient;
 import com.project.board.model.response.FileListModel;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class FileService {
     @Value("http://file-cluster-ip:8100/api/v1/files")
@@ -36,6 +38,7 @@ public class FileService {
         HttpEntity<MultiValueMap<String, Object> > requestEntity = new HttpEntity<>(body, headers);
 
         try {
+            log.info("uploadFile : "+boardId);
             restTemplateClient.postForEntity(apiServer+"?boardId="+boardId, requestEntity, String.class);
         }catch (Exception e){
             e.printStackTrace();
