@@ -21,7 +21,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class FileService {
-    @Value("http://dev.file.com/api/v1/files")
+    @Value("http://file-cluster-ip:8100/api/v1/files")
     private String apiServer;
 
     @Autowired
