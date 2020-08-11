@@ -38,6 +38,7 @@ public class FileService {
         try {
             restTemplateClient.postForEntity(apiServer+"?boardId="+boardId, requestEntity, String.class);
         }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
