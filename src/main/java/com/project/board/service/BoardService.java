@@ -28,7 +28,7 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
-    public void addBoard(AddBoardModel addBoardModel){
+    public Integer addBoard(AddBoardModel addBoardModel){
         BoardModel boardModel = BoardModel.builder()
                 .title(addBoardModel.getTitle())
                 .content(addBoardModel.getContent())
@@ -36,6 +36,7 @@ public class BoardService {
                 .createdAt(Timestamp.valueOf(LocalDateTime.now(ZoneId.of("+9"))))
                 .build();
         boardRepository.save(boardModel);
+        return boardModel.getBoard_id();
     }
 
     public BoardModel getBoard(int boardId) throws EntityNotFoundException {

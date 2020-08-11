@@ -35,11 +35,11 @@ public class BoardController {
     //게시판 작성
     @ApiOperation(value = "게시글 추가")
     @RequestMapping(value = "/boards", method = RequestMethod.POST)
-    public void addBoard(
+    public Integer addBoard(
             @ApiParam(name = "게시글 추가 JSON", value = " 새로운 글을 추가합니다.", required = true)
             @RequestBody AddBoardModel addBoardModel){
-        boardService.addBoard(addBoardModel);
         log.info("addBoard()");
+        return boardService.addBoard(addBoardModel);
     }
 
     //게시판 목록 요청
