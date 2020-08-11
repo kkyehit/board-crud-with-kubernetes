@@ -14,9 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -31,6 +33,16 @@ public class BoardController {
 
     @Autowired
     FileService fileService;
+    
+    //게시판 작성
+    @ApiOperation(value = "게시글과 첨부 파일 추가")
+    @RequestMapping(value = "/boards", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void addBoardWithFile(
+            @ApiParam(name = "게시글 추가 JSON", value = " 새로운 글을 추가합니다.", required = true)
+            AddBoardModel addBoardModel, @RequestParam("file") MultipartFile[] files){
+        log.info("addBoard()");
+        fileService.uploadFile(addBoard(addBoardModel), files);
+    }
 
     //게시판 작성
     @ApiOperation(value = "게시글 추가")
