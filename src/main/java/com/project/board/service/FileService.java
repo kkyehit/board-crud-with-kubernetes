@@ -36,7 +36,7 @@ public class FileService {
         HttpEntity<MultiValueMap<String, Object> > requestEntity = new HttpEntity<>(body, headers);
 
         try {
-            restTemplateClient.postForEntity(apiServer, requestEntity, String.class);
+            restTemplateClient.postForEntity(apiServer+"?boardId="+boardId, requestEntity, String.class);
         }catch (Exception e){
         }
     }
