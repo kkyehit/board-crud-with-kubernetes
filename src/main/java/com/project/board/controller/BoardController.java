@@ -39,7 +39,7 @@ public class BoardController {
     @RequestMapping(value = "/boards/files", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void addBoardWithFile(
             @ApiParam(name = "게시글과 첨부 파일 추가 JSON", value = " 게시글과 첨부 파일을 추가합니다.", required = true)
-            AddBoardModel addBoardModel, @RequestParam("file") MultipartFile[] files){
+            AddBoardModel addBoardModel, @RequestParam("files") MultipartFile[] files){
         log.info("addBoard()");
         fileService.uploadFile(addBoard(addBoardModel), files);
     }
