@@ -31,19 +31,6 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @Autowired
-    FileService fileService;
-    
-    //게시판 작성
-    @ApiOperation(value = "게시글과 첨부 파일 추가")
-    @RequestMapping(value = "/boards/files", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void addBoardWithFile(
-            @ApiParam(name = "게시글과 첨부 파일 추가 JSON", value = " 게시글과 첨부 파일을 추가합니다.", required = true)
-            AddBoardModel addBoardModel, @RequestParam("files") MultipartFile[] files){
-        log.info("addBoard()");
-        fileService.uploadFile(addBoard(addBoardModel), files);
-    }
-
     //게시판 작성
     @ApiOperation(value = "게시글 추가")
     @RequestMapping(value = "/boards", method = RequestMethod.POST)
@@ -68,18 +55,10 @@ public class BoardController {
     @ApiOperation(value = "게시글 내용 요청")
     @RequestMapping(value = "/boards/{boardId}", method = RequestMethod.GET)
     @ApiImplicitParam(name = "boardId", value = "게시글 ID에 따른 게시글 정보를 반환합니다.", dataType = "Integer", required = true)
-    public ResponseBoardModel getBoard(
+    public BoardModel getBoard(
             @PathVariable("boardId") int boardId) throws Exception {
         log.info("getBoard");
-        BoardModel boardModel = boardService.getBoard(boardId);
-        return ResponseBoardModel.builder()
-                .author_name(boardModel.getAuthor_name())
-                .board_id(boardModel.getBoard_id())
-                .content(boardModel.getContent())
-                .title(boardModel.getTitle())
-                .createdAt(boardModel.getCreatedAt())
-                .fileList(fileService.getFileList(boardId))
-                .build();
+        return boardService.getBoard(boardId);
     }
 
     //게시판 수정
