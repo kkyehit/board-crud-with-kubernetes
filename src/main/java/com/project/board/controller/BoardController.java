@@ -5,16 +5,20 @@ import com.project.board.model.request.AddBoardModel;
 import com.project.board.model.request.DeleteBoardModel;
 import com.project.board.model.request.UpdateBoardModel;
 import com.project.board.model.response.PreviewBoardModel;
+import com.project.board.model.response.ResponseBoardModel;
 import com.project.board.service.BoardService;
+import com.project.board.service.FileService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -30,11 +34,11 @@ public class BoardController {
     //게시판 작성
     @ApiOperation(value = "게시글 추가")
     @RequestMapping(value = "/boards", method = RequestMethod.POST)
-    public void addBoard(
+    public Integer addBoard(
             @ApiParam(name = "게시글 추가 JSON", value = " 새로운 글을 추가합니다.", required = true)
             @RequestBody AddBoardModel addBoardModel){
-        boardService.addBoard(addBoardModel);
         log.info("addBoard()");
+        return boardService.addBoard(addBoardModel);
     }
 
     //게시판 목록 요청
