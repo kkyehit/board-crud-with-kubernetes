@@ -1,0 +1,581 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "board CRUD",
+        "version": "0.0.1-SNAPSHOT",
+        "title": "Board Project API document"
+    },
+    "host": "dev.board.com",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "board-controller",
+            "description": "Board Controller"
+        },
+        {
+            "name": "board-controller-v-2",
+            "description": "Board Controller V 2"
+        }
+    ],
+    "paths": {
+        "/api/v1/boards": {
+            "get": {
+                "tags": [
+                    "board-controller"
+                ],
+                "summary": "게시글 목록 요청",
+                "operationId": "getBoardListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "페이지 단위로 게시글 목록을 반환합니다.",
+                        "required": true,
+                        "type": "ref"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/게시글 목록 모델"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "board-controller"
+                ],
+                "summary": "게시글 추가",
+                "operationId": "addBoardUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "게시글 추가 JSON",
+                        "description": " 새로운 글을 추가합니다.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/게시글 추가 모델"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "board-controller"
+                ],
+                "summary": "게시글 수정",
+                "operationId": "updateBoardUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "게시글 수정 JSON",
+                        "description": "게시글 ID에 해당하는 글의 내용을 수정합니다.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/게시글 수정 모델"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "board-controller"
+                ],
+                "summary": "게시글 삭제",
+                "operationId": "deleteBoardUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "게시글 삭제 JSON",
+                        "description": "게시글 ID에 해당하는 글을 삭제합니다.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/게시글 삭제 모델"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/boards/{boardId}": {
+            "get": {
+                "tags": [
+                    "board-controller"
+                ],
+                "summary": "게시글 내용 요청",
+                "operationId": "getBoardUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "boardId",
+                        "in": "path",
+                        "description": "게시글 ID에 따른 게시글 정보를 반환합니다.",
+                        "required": true,
+                        "type": "ref"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/게시글 모델"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v2/boards": {
+            "post": {
+                "tags": [
+                    "board-controller-v-2"
+                ],
+                "summary": "게시글과 첨부 파일 추가",
+                "operationId": "addBoardWithFileUsingPOST",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "author_name",
+                        "description": "작성자 이름",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "formData",
+                        "name": "content",
+                        "description": "게시글 내용",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "files",
+                        "in": "formData",
+                        "description": "첨부파일",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "title",
+                        "description": "게시글 제목",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "board-controller-v-2"
+                ],
+                "summary": "게시글과 첨부파일 삭제",
+                "operationId": "deleteBoardUsingDELETE_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "게시글 삭제 JSON",
+                        "description": "게시글 ID에 해당하는 글과 첨부파일을 삭제합니다.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/게시글 삭제 모델"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v2/boards/{boardId}": {
+            "get": {
+                "tags": [
+                    "board-controller-v-2"
+                ],
+                "summary": "게시글 내용과 첨부파일 목록 요청",
+                "operationId": "getBoardUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "boardId",
+                        "in": "path",
+                        "description": "게시글 ID에 따른 게시글 정보와 첨부파일 목록을 반환합니다.",
+                        "required": true,
+                        "type": "ref"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/게시글 정보와 첨부파일 목록 모델"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "definitions": {
+        "Timestamp": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "day": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "hours": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "minutes": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "month": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nanos": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "seconds": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "time": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "timezoneOffset": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "year": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "Timestamp"
+        },
+        "게시글 모델": {
+            "type": "object",
+            "properties": {
+                "author_name": {
+                    "type": "string",
+                    "description": "게시자"
+                },
+                "board_id": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "게시글 ID"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "게시글 내용"
+                },
+                "createdAt": {
+                    "description": "작성 시간",
+                    "$ref": "#/definitions/Timestamp"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "게시글 제목"
+                }
+            },
+            "title": "게시글 모델",
+            "description": "게시글 ID와 작성 시간, 제목, 내용, 글쓴이 정보를 포함합니다."
+        },
+        "게시글 목록 모델": {
+            "type": "object",
+            "properties": {
+                "author_name": {
+                    "type": "string",
+                    "description": "게시자"
+                },
+                "board_id": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "게시글 ID"
+                },
+                "createdAt": {
+                    "description": "작성 시간",
+                    "$ref": "#/definitions/Timestamp"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "게시글 제목"
+                }
+            },
+            "title": "게시글 목록 모델",
+            "description": "게시글 ID와 제목, 글쓴이, 작성 시간을 반환합니다."
+        },
+        "게시글 삭제 모델": {
+            "type": "object",
+            "properties": {
+                "board_id": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "게시글 ID"
+                }
+            },
+            "title": "게시글 삭제 모델",
+            "description": "게시글의 ID를 입력받아 해당 게시글을 삭제합니다."
+        },
+        "게시글 수정 모델": {
+            "type": "object",
+            "properties": {
+                "author_name": {
+                    "type": "string",
+                    "description": "게시자"
+                },
+                "board_id": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "게시글 ID"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "게시글 내용"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "게시글 제목"
+                }
+            },
+            "title": "게시글 수정 모델",
+            "description": "게시글 ID와 제목, 내용을 입력받아 수정합니다."
+        },
+        "게시글 정보와 첨부파일 목록 모델": {
+            "type": "object",
+            "properties": {
+                "author_name": {
+                    "type": "string",
+                    "description": "작성자"
+                },
+                "board_id": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "게시글 ID"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "내용"
+                },
+                "createdAt": {
+                    "description": "작성 시간",
+                    "$ref": "#/definitions/Timestamp"
+                },
+                "fileList": {
+                    "type": "array",
+                    "description": "파일 목록",
+                    "items": {
+                        "$ref": "#/definitions/첨부파일 정보 모델"
+                    }
+                },
+                "title": {
+                    "type": "string",
+                    "description": "제목"
+                }
+            },
+            "title": "게시글 정보와 첨부파일 목록 모델",
+            "description": "게시글 ID와 제목, 글쓴이, 작성 시간및 첨부 파일 목록을 반환합니다."
+        },
+        "게시글 추가 모델": {
+            "type": "object",
+            "properties": {
+                "author_name": {
+                    "type": "string",
+                    "description": "게시자"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "게시글 내용"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "게시글 제목"
+                }
+            },
+            "title": "게시글 추가 모델",
+            "description": "제목, 내용, 글쓴이를 입력합니다."
+        },
+        "첨부파일 정보 모델": {
+            "type": "object",
+            "properties": {
+                "boardId": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "게시글 ID"
+                },
+                "originFileName": {
+                    "type": "string",
+                    "description": "원본 파일 이름"
+                },
+                "uploadTime": {
+                    "description": "작성 시간",
+                    "$ref": "#/definitions/Timestamp"
+                }
+            },
+            "title": "첨부파일 정보 모델",
+            "description": "첨부된 게시글의 ID와 원본 파일 이름, 작성 시간을 반환합니다."
+        }
+    }
+}
