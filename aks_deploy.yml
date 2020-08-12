@@ -23,6 +23,16 @@ spec:
                 configMapKeyRef:
                   name: config
                   key: profile
+            - name: FILE_API_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: api-config
+                  key: fileApiHost
+            - name: FILE_API_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: api-config
+                  key: fileApiPort
             - name: MYSQL_URL
               valueFrom:
                 secretKeyRef:

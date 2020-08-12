@@ -21,8 +21,8 @@ import java.util.List;
 @Slf4j
 @Service
 public class FileService {
-    @Value("http://file-cluster-ip:8100/api/v1/files")
-    private String apiServer;
+    @Value("http://${FILE_API_HOST}:${FILE_API_PORT}/api/v1/files")
+    private String apiURL;
 
     @Value("?boardId=")
     private String boardIdQuery;
@@ -54,7 +54,7 @@ public class FileService {
             HttpEntity<MultiValueMap<String, Object> > requestEntity = new HttpEntity<>(body, headers);
 
             log.info("uploadFile : "+boardId);
-            restTemplateClient.postForLocation(apiServer+boardIdQuery+boardId, requestEntity);
+            restTemplateClient.postForLocation(apiURL+boardIdQuery+boardId, requestEntity);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -62,7 +62,7 @@ public class FileService {
 
     public List<FileListModel> getFileList(Integer boardId){
         try {
-            return restTemplateClient.getForObject(apiServer + "/" + boardId, List.class);
+            return restTemplateClient.getForObject(apiURL + "/" + boardId, List.class);
         }catch (Exception e){
             return new ArrayList<>();
         }
@@ -70,7 +70,7 @@ public class FileService {
 
     public void deleteFile(Integer boardId){
         try{
-            restTemplateClient.delete(apiServer+deletePath+boardIdQuery+boardId);
+            restTemplateClient.delete(apiURL+deletePath+boardIdQuery+boardId);
         }catch (Exception e){
 
         }

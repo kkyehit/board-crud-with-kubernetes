@@ -1,4 +1,4 @@
-apipiVersion: v1
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config
@@ -15,3 +15,21 @@ metadata:
 data:
   ns: production
   profile: prod
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: staging
+data:
+  fileApiHost: "file-cluster-ip"
+  fileApiPort: "8100"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: production
+data:
+  fileApiHost: "file-cluster-ip"
+  fileApiPort: "8100"
