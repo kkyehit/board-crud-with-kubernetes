@@ -45,8 +45,8 @@ public class BoardControllerV2 {
     @RequestMapping(value = "/boards", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "files", value = "첨부파일", required = false),
-            @ApiImplicitParam(name = "author_name", required = true),
-            @ApiImplicitParam(name = "title", required = true)
+            @ApiImplicitParam(name = "author_name", value = "작성자 이름", required = true),
+            @ApiImplicitParam(name = "title", value = "게시글 제목", required = true)
     })
     public void addBoardWithFile(
             AddBoardModel addBoardModel, @RequestParam("files") MultipartFile[] files){
