@@ -41,21 +41,21 @@ public class BoardControllerV2 {
     
     //게시판 작성
     @ApiOperation(value = "게시글과 첨부 파일 추가")
-    @RequestMapping(value = "/boards/files", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "/boards", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void addBoardWithFile(
             @ApiParam(name = "게시글과 첨부 파일 추가 JSON", value = " 게시글과 첨부 파일을 추가합니다.", required = true)
             AddBoardModel addBoardModel, @RequestParam("files") MultipartFile[] files){
-        log.info("addBoard()");
+        log.info("v2/addBoard");
         fileService.uploadFile(boardController.addBoard(addBoardModel), files);
     }
 
     //게시판 내용 요청
-    @ApiOperation(value = "게시글 내용 요청")
+    @ApiOperation(value = "게시글과 첨부파일 목록 요청")
     @RequestMapping(value = "/boards/{boardId}", method = RequestMethod.GET)
-    @ApiImplicitParam(name = "boardId", value = "게시글 ID에 따른 게시글 정보를 반환합니다.", dataType = "Integer", required = true)
+    @ApiImplicitParam(name = "boardId", value = "게시글 ID에 따른 게시글 정보와 첨부파일 목록을 반환합니다.", dataType = "Integer", required = true)
     public ResponseBoardModel getBoard(
             @PathVariable("boardId") int boardId) throws Exception {
-        log.info("getBoard");
+        log.info("v2/getBoard");
         BoardModel boardModel = boardService.getBoard(boardId);
         return ResponseBoardModel.builder()
                 .author_name(boardModel.getAuthor_name())
@@ -70,7 +70,7 @@ public class BoardControllerV2 {
     //Global Exception
     @ExceptionHandler(value = {EntityNotFoundException.class, EmptyResultDataAccessException.class})
     public ResponseEntity<Object> noContentExceptionHandler(Exception e, WebRequest request){
-        log.info("NO_CONTENT");
+        log.info("v2/NO_CONTENT");
         return new ResponseEntity<Object>("",new HttpHeaders(), HttpStatus.NO_CONTENT);
     }
 }
