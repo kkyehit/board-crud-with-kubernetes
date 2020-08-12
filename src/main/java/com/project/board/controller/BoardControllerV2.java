@@ -9,6 +9,7 @@ import com.project.board.model.response.ResponseBoardModel;
 import com.project.board.service.BoardService;
 import com.project.board.service.FileService;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -42,8 +43,11 @@ public class BoardControllerV2 {
     //게시판 작성
     @ApiOperation(value = "게시글과 첨부 파일 추가")
     @RequestMapping(value = "/boards", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "files", value = "첨부파일", required = false),
+            @ApiImplicitParam(name = "addBoardModel", required = true)
+    })
     public void addBoardWithFile(
-            @ApiParam(name = "게시글과 첨부 파일 추가 JSON", value = " 게시글과 첨부 파일을 추가합니다.", required = true)
             AddBoardModel addBoardModel, @RequestParam("files") MultipartFile[] files){
         log.info("v2/addBoard");
         fileService.uploadFile(boardController.addBoard(addBoardModel), files);
