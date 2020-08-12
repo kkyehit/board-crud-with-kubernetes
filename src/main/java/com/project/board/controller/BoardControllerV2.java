@@ -74,7 +74,7 @@ public class BoardControllerV2 {
 
     //게시판 삭제
     @ApiOperation(value = "게시글과 첨부파일 삭제")
-    @RequestMapping(value = "/boards", method = RequestMethod.GET)
+    @RequestMapping(value = "/boards", method = RequestMethod.DELETE)
     public void deleteBoard(@ApiParam(name = "게시글 삭제 JSON", value = "게시글 ID에 해당하는 글과 첨부파일을 삭제합니다.", required = true)
                                 @RequestBody DeleteBoardModel deleteBoardModel) throws Exception {
         log.info("v2/deleteBoard");
