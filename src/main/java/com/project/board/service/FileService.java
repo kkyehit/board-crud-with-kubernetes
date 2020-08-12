@@ -24,6 +24,12 @@ public class FileService {
     @Value("http://file-cluster-ip:8100/api/v1/files")
     private String apiServer;
 
+    @Value("?boardId=")
+    private String boardIdQuery;
+
+    @Value("/boards/id")
+    private String deletePath;
+
     @Autowired
     private RestTemplateClient restTemplateClient;
 
@@ -48,7 +54,7 @@ public class FileService {
             HttpEntity<MultiValueMap<String, Object> > requestEntity = new HttpEntity<>(body, headers);
 
             log.info("uploadFile : "+boardId);
-            restTemplateClient.postForLocation(apiServer+"?boardId="+boardId, requestEntity);
+            restTemplateClient.postForLocation(apiServer+boardIdQuery+boardId, requestEntity);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -59,6 +65,14 @@ public class FileService {
             return restTemplateClient.getForObject(apiServer + "/" + boardId, List.class);
         }catch (Exception e){
             return new ArrayList<>();
+        }
+    }
+
+    public void deleteFile(Integer boardId){
+        try{
+            restTemplateClient.delete(apiServer+deletePath+boardIdQuery+boardId);
+        }catch (Exception e){
+
         }
     }
 }

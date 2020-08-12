@@ -50,7 +50,7 @@ public class BoardControllerV2 {
     }
 
     //게시판 내용 요청
-    @ApiOperation(value = "게시글과 첨부파일 목록 요청")
+    @ApiOperation(value = "게시글 내용과 첨부파일 목록 요청")
     @RequestMapping(value = "/boards/{boardId}", method = RequestMethod.GET)
     @ApiImplicitParam(name = "boardId", value = "게시글 ID에 따른 게시글 정보와 첨부파일 목록을 반환합니다.", dataType = "Integer", required = true)
     public ResponseBoardModel getBoard(
@@ -65,6 +65,16 @@ public class BoardControllerV2 {
                 .createdAt(boardModel.getCreatedAt())
                 .fileList(fileService.getFileList(boardId))
                 .build();
+    }
+
+    //게시판 삭제
+    @ApiOperation(value = "게시글과 첨부파일 삭제")
+    @RequestMapping(value = "/boards", method = RequestMethod.GET)
+    public void deleteBoard(@ApiParam(name = "게시글 삭제 JSON", value = "게시글 ID에 해당하는 글과 첨부파일을 삭제합니다.", required = true)
+                                @RequestBody DeleteBoardModel deleteBoardModel) throws Exception {
+        log.info("v2/deleteBoard");
+        boardService.deleteBoard(deleteBoardModel);
+        fileService.deleteFile(deleteBoardModel.getBoard_id());
     }
 
     //Global Exception
