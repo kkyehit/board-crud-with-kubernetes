@@ -27,9 +27,6 @@ public class FileService {
     @Value("?boardId=")
     private String boardIdQuery;
 
-    @Value("/boards/id")
-    private String deletePath;
-
     @Autowired
     private RestTemplateClient restTemplateClient;
 
@@ -54,7 +51,7 @@ public class FileService {
             HttpEntity<MultiValueMap<String, Object> > requestEntity = new HttpEntity<>(body, headers);
 
             log.info("uploadFile : "+boardId);
-            restTemplateClient.postForLocation(apiURL+boardIdQuery+boardId, requestEntity);
+            restTemplateClient.postForLocation(apiURL + boardIdQuery + boardId, requestEntity);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -62,17 +59,18 @@ public class FileService {
 
     public List<FileListModel> getFileList(Integer boardId){
         try {
-            return restTemplateClient.getForObject(apiURL + "/" + boardId, List.class);
+            return restTemplateClient.getForObject(apiURL + boardIdQuery + boardId, List.class);
         }catch (Exception e){
+            e.printStackTrace();
             return new ArrayList<>();
         }
     }
 
     public void deleteFile(Integer boardId){
         try{
-            restTemplateClient.delete(apiURL+deletePath+boardIdQuery+boardId);
+            restTemplateClient.delete(apiURL+"/"+boardIdQuery+boardId);
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 }
