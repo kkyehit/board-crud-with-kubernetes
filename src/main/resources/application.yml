@@ -14,11 +14,18 @@ spring:
     hibernate:
       format_sql: true
       ddl_auto: ${AUTO_DDL}
-
   servlet:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+  mvc:
+    view:
+      prefix: "/WEB-INF/view/"
+      suffix: ".jsp"
+
+devtools:
+  livereload:
+    enabled: true
 
 banner:
   location: "classpath:banner.txt"
