@@ -117,7 +117,14 @@ class BoardApplicationTests {
 	@Test
 	@Order(9)
 	void callWeb() throws Exception{
-		mockMvc.perform(MockMvcRequestBuilders.get("/web"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/web/"))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andDo(MockMvcResultHandlers.print());
+	}
+	@Test
+	@Order(10)
+	void callBoards() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders.get("/web/boards"))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print());
 	}
