@@ -4,13 +4,13 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>Insert</title>
 </head>
 <body>
     <form action="/web/boards" method="post">
         제목 <input type ="text" name="title"><br />
-        내용 <input type ="text" name="content"><br />
         작성자 <input type ="text" name="author_name"><br />
+        내용 <textarea name="content" cols="40" rows="8" ></textarea>
         <button type = "submit">save</button>
     </form>
 </body>

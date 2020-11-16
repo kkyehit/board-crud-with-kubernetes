@@ -6,10 +6,7 @@ import com.project.board.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -49,5 +46,13 @@ public class WebController {
         System.out.println("POST /web/boards");
         boardService.addBoard(addboardModel);
         return board(0);
+    }
+    @RequestMapping(value = "/boards/{boardId}", method = RequestMethod.GET)
+    public ModelAndView getBoard(@PathVariable("boardId") Integer boardId) {
+        //log.debug("called index");
+        System.out.println("GET /web/boards/"+boardId);
+        ModelAndView model = new ModelAndView("boardContentsPage");
+        model.addObject("board",boardService.getBoard(boardId));
+        return model;
     }
 }
