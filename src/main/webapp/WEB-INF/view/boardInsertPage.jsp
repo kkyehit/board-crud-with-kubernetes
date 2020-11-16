@@ -7,11 +7,27 @@
     <title>Insert</title>
 </head>
 <body>
+    <center>
     <form action="/web/boards" method="post">
-        제목 <input type ="text" name="title"><br />
-        작성자 <input type ="text" name="author_name"><br />
-        내용 <textarea name="content" cols="40" rows="8" ></textarea>
-        <button type = "submit">save</button>
+        <table>
+            <tr>
+                <td> 제목 </td>
+                <td> <input type ="text" size="40" name="title"> </td>
+            </tr>
+            <tr>
+                <td> 작성자 </td>
+                <td> <input type ="text" size="40" name="author_name"> </td>
+            </tr>
+            <tr>
+                <td> 내용 </td>
+                <td> <textarea name="content" cols="40" rows="8" ></textarea> </td>
+            </tr>
+
+            <tr>
+                <td> <button type = "submit">save</button> </td>
+            </tr>
+        </table>
     </form>
+    </center>
 </body>
 </html>

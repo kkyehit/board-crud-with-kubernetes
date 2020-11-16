@@ -8,8 +8,21 @@
     <title><%=boardModel.getTitle()%></title>
 </head>
 <body>
-    제목 : <input type="text" name="title" value="<%=boardModel.getTitle()%>" readonly /><br/>
-    글쓴이 : <input type="text" name="title" value="<%=boardModel.getAuthor_name()%>" readonly /><br/>
-    내용 : <textarea name="content" cols="40" rows="8" readonly><%=boardModel.getContent()%></textarea>
+    <center>
+        <table>
+            <tr>
+                <td>제목 :</td>
+                <td><input type="text" size="40" name="title" value="<%=boardModel.getTitle()%>" readonly /></td>
+            </tr>
+            <tr>
+                <td>글쓴이 :</td>
+                <td><input type="text" size="40" name="title" value="<%=boardModel.getAuthor_name()%>" readonly /></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td><textarea name="content" cols="40" rows="8" readonly><%=boardModel.getContent()%></textarea></td>
+            </tr>
+        </table>
+    </center>
 </body>
 </html>

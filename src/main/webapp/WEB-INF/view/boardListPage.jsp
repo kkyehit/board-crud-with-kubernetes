@@ -15,6 +15,7 @@
     <title>List</title>
 </head>
 <body>
+    <center>
     <table border="1">
         <tr>
             <th>Title</th>
@@ -45,6 +46,6 @@
         <% } %>
         <a href="/web/boards?pageNum=<%=currentPage + 1%>">다음</a>
     </spane>
-
+</center>
 </body>
 </html>
