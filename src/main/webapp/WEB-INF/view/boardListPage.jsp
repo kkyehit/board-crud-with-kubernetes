@@ -40,6 +40,9 @@
         <% } %>
         <a><b><%=currentPage%></b></a>
         <a><%=currentPage + 1%></a>
+        <% if(currentPage != 0) { %>
+            <a><%=currentPage + 2%></a>
+        <% } %>
         <a href="/web/boards?pageNum=<%=currentPage + 1%>">다음</a>
     </spane>
 
