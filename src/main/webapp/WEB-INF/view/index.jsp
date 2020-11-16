@@ -3,9 +3,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>Hello Spring Boot!</title>
 </head>
 <body>
-    <h1>Hello Spring Boot!</h1>
+    <center>
+        <a href="web/new/boards">add boards</a> <br />
+        <a href="web/boards">list</a> <br />
+    </center>
 </body>
 </html>
