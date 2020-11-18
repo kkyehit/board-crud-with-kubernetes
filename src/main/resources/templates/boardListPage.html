@@ -17,6 +17,18 @@
                 <td th:text="${board.author_name}"></td>
                 <td th:text="${board.createdAt}"></td>
             </tr>
+            <tr>
+                <td colspan="3">
+                    <center th:with="prev=${pageNum - 1}, next=${pageNum + 1}">
+                        <a th:unless="${prev < 0}" th:href="@{/web/boards(pageNum=${prev})}">prev</a>
+                        <a th:unless="${prev < 0}" th:text="${prev}"></a>
+                        <b><a th:text="${pageNum}"></a></b>
+                        <a th:text="${next}"></a>
+                        <a th:if="${prev < 0}" th:text="${next + 1}"></a>
+                        <a th:href="@{/web/boards(pageNum=${next})}">next</a>
+                    </center>
+                </td>
+            </tr>
         </table>
     </center>
 </body>
