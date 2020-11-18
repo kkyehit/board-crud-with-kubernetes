@@ -13,7 +13,7 @@
                 <th>작성시간</th>
             </tr>
             <tr th:each="board : ${boards}">
-                <td th:text="${board.title}"></td>
+                <td><a th:text="${board.title}" th:href="@{ '/web/board/' + ${board.board_id} }"></a></td>
                 <td th:text="${board.author_name}"></td>
                 <td th:text="${board.createdAt}"></td>
             </tr>
