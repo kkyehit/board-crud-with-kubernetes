@@ -31,4 +31,9 @@ public class WebContoller {
         model.addAttribute("addBoardModel", new AddBoardModel());
         return "boardInsertPage.html";
     }
+    @RequestMapping(value = "/boards", method = RequestMethod.GET)
+    public String getBoardPages(Model model){
+        model.addAttribute("boards", boardService.getBoards(0));
+        return "boardListPage.html";
+    }
 }
