@@ -27,7 +27,7 @@ public class WebContoller {
         return "redirect:/web/";
     }
     @RequestMapping(value = "/board", method = RequestMethod.GET)
-    public String boardPage(Model model){
+    public String getBoardPage(Model model){
         model.addAttribute("addBoardModel", new AddBoardModel());
         return "boardInsertPage.html";
     }
