@@ -114,4 +114,10 @@ class BoardApplicationTests {
 				.andExpect(MockMvcResultMatchers.status().isNoContent())
 				.andDo(MockMvcResultHandlers.print());
 	}
+	@Test
+	@Order(9)
+	void web() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders.get("/web/"))
+				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
 }
