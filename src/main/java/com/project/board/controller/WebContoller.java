@@ -5,10 +5,7 @@ import com.project.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/web")
@@ -32,8 +29,9 @@ public class WebContoller {
         return "boardInsertPage.html";
     }
     @RequestMapping(value = "/boards", method = RequestMethod.GET)
-    public String getBoardPages(Model model){
-        model.addAttribute("boards", boardService.getBoards(0));
+    public String getBoardPages(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum){
+        model.addAttribute("pageNum", pageNum);
+        model.addAttribute("boards", boardService.getBoards(pageNum));
         return "boardListPage.html";
     }
 }
