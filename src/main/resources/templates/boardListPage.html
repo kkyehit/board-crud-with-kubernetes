@@ -5,24 +5,19 @@
     <title th:text=#{title}></title>
 </head>
 <body>
-    <form th:action="@{/web/board}" th:object="${addBoardModel}" method="post">
-        <table>
+    <center>
+        <table border="1">
             <tr>
-                <td> 제목 </td>
-                <td><input type="text" th:field="*{title}"></td>
+                <th>제목</th>
+                <th>글쓴이</th>
+                <th>작성시간</th>
             </tr>
-            <tr>
-                <td> 작성자 </td>
-                <td><input type="text" th:field="*{content}"></td>
-            </tr>
-            <tr>
-                <td> 내용 </td>
-                <td><textarea th:field="*{author_name}"></textarea> </td>
-            </tr>
-            <tr>
-                <td><input name="submit" type="submit" value="submit" /></td>
+            <tr th:each="board : ${boards}">
+                <td th:text="${board.title}"></td>
+                <td th:text="${board.author_name}"></td>
+                <td th:text="${board.createdAt}"></td>
             </tr>
         </table>
-    </form>
+    </center>
 </body>
 </html>
