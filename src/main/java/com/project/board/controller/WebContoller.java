@@ -28,6 +28,11 @@ public class WebContoller {
         model.addAttribute("addBoardModel", new AddBoardModel());
         return "boardInsertPage.html";
     }
+    @RequestMapping(value = "/board/{boardId}", method = RequestMethod.GET)
+    public String getBoard(Model model, @PathVariable("boardId") Integer boardId){
+        model.addAttribute("board", boardService.getBoard(boardId));
+        return "boardPage.html";
+    }
     @RequestMapping(value = "/boards", method = RequestMethod.GET)
     public String getBoardPages(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum){
         model.addAttribute("pageNum", pageNum);

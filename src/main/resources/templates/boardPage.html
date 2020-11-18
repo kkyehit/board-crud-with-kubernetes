@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text=#{title}></title>
+</head>
+<body>
+    <form th:action="@{/web/board}" th:object="${addBoardModel}" method="post">
+        <table>
+            <tr>
+                <td> 제목 </td>
+                <td><input type="text" th:field="*{title}"></td>
+            </tr>
+            <tr>
+                <td> 작성자 </td>
+                <td><input type="text" th:field="*{content}"></td>
+            </tr>
+            <tr>
+                <td> 내용 </td>
+                <td><textarea th:field="*{author_name}"></textarea> </td>
+            </tr>
+            <tr>
+                <td><input name="submit" type="submit" value="submit" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
